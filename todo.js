@@ -9,6 +9,7 @@ class Todo {
     this.todoList = []
   }
 
+
   parseFile(){
     this.todoList = jsonfile.readFileSync(this.fileName)
     // console.log(this.todoList);
