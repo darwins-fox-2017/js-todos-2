@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "task": "Berenang",
+    "status": false,
+    "createdAt": "2017-02-08T10:19:44.413Z",
+    "updatedAt": "2017-02-08T13:24:57.613Z",
+    "tags": [
+      "air",
+      "basah",
+      "hobi",
+      "lomba"
+    ]
+  },
+  {
+    "id": 2,
+    "task": "Makan malam",
+    "status": false,
+    "createdAt": "2017-02-08T10:20:12.555Z",
+    "updatedAt": "2017-02-08T14:57:27.997Z",
+    "tags": [
+      "makanan",
+      "restaurant",
+      "hobi",
+      "doi"
+    ]
+  },
+  {
+    "id": 3,
+    "task": "Pergi ke mall",
+    "status": true,
+    "createdAt": "2017-02-08T13:17:57.936Z",
+    "updatedAt": "2017-02-08T14:57:02.254Z",
+    "tags": [
+      "hiburan"
+    ]
+  },
+  {
+    "id": 4,
+    "task": "Belajar bersama",
+    "status": false,
+    "createdAt": "2017-02-08T14:32:03.305Z",
+    "updatedAt": "2017-02-08T14:41:00.824Z",
+    "tags": [
+      "belajar",
+      "sukses",
+      "hobi"
+    ]
+  }
+]
