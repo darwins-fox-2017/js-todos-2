@@ -1,1 +1,33 @@
-[{"id":1,"title":"Coding","description":"Lalalak akfjsfjkasd ksaf kdsjf fjsl","status":false,"createdAt":"2014-09-08T08:02:17-05:00","updatedAt":"2017-02-08T09:41:58.080Z","tags":["murah","enak","banyak"]},{"id":2,"title":"Makan","description":"Satu dua tiga","status":false,"createdAt":"2017-02-08T09:40:40.534Z","updatedAt":"2017-02-08T09:42:55.733Z"},{"id":3,"title":"Minum","description":"Satu dua tiga","status":false,"createdAt":"2017-02-08T09:40:53.849Z","updatedAt":"2017-02-08T09:42:33.785Z"}]
+[{
+    "id": 1,
+    "title": "Coding",
+    "description": "Lalalak akfjsfjkasd ksaf kdsjf fjsl",
+    "status": false,
+    "createdAt": "2014-09-08T08:02:17-05:00",
+    "updatedAt": "2017-02-08T09:41:58.080Z",
+    "tags": ["test"]
+}, {
+    "id": 2,
+    "title": "Makan",
+    "description": "Satu dua tiga",
+    "status": true,
+    "createdAt": "2017-02-08T09:40:40.534Z",
+    "updatedAt": "2017-02-08T11:25:41.419Z",
+    "tags": ["test"]
+}, {
+    "id": 3,
+    "title": "Minum",
+    "description": "Satu dua tiga",
+    "status": true,
+    "createdAt": "2017-02-08T09:40:53.849Z",
+    "updatedAt": "2017-02-08T11:25:45.389Z",
+    "tags": ["test"]
+}, {
+    "id": 4,
+    "title": "Tidur",
+    "description": "Satu dua tiga",
+    "status": false,
+    "createdAt": "2017-02-08T11:25:11.005Z",
+    "updatedAt": "2017-02-08T11:25:11.005Z",
+    "tags": ["sukes", "test"]
+}]

@@ -27,7 +27,7 @@ class Todo {
     todo.status = todoProperties.status,
     todo.createdAt = new Date()
     todo.updatedAt = new Date()
-
+    todo.tags = []
     this.todoList.push(todo)
 
     this.writeToFile()
@@ -117,9 +117,12 @@ class Todo {
   addTag(id, arrTag){
     let found = false
     let indexTodo = 0
-    for (var i = 0; i < this.todoList.length; i++) {
+    for (let i = 0; i < this.todoList.length; i++) {
       if (this.todoList[i].id == id) {
-        this.todoList[i].tags = arrTag
+        for (let j = 0; j < arrTag.length; j++) {
+          this.todoList[i].tags.push(arrTag[j])
+        }
+
         indexTodo = i
         found = true
       }
@@ -153,7 +156,6 @@ class Todo {
       todos = todoList.sort(function(a, b){
         return new Date(a.updatedAt) - new Date(b.updatedAt);
       })
-
       for (var i = 0; i < todos.length; i++) {
         console.log(`${todos[i].id} [ ${todos[i].status == true ? 'X' : ' '} ] ${todos[i].title} `);
       }
