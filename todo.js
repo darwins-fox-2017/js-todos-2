@@ -53,6 +53,7 @@ class Todo {
     for (var i = 0; i < this.todoList.length; i++) {
       if (this.todoList[i].id == id) {
         this.todoList[i].status = true
+        this.todoList[i].updatedAt = new Date()
         this.writeToFile()
         return true
       }
@@ -64,6 +65,7 @@ class Todo {
     for (var i = 0; i < this.todoList.length; i++) {
       if (this.todoList[i].id == id) {
         this.todoList[i].status = false
+        this.todoList[i].updatedAt = new Date()
         this.writeToFile()
         return true
       }
@@ -95,20 +97,6 @@ class Todo {
       }
     }
     this.sortingByDate(todoList, order)
-  }
-
-  showOrderBy(todoList, order){
-
-    // if (order == 'asc') {
-    //   for (var i = 0; i < todoList.length; i++) {
-    //     console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
-    //
-    //   }
-    // } else {
-    //   for (var i = todoList.length -1; i >= 0 ; i--) {
-    //     console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
-    //   }
-    // }
   }
 
   sortingByName(todoList){
@@ -172,7 +160,6 @@ class Todo {
     } else {
       todos = todoList.sort(function(a, b){
         return new Date(b.updatedAt) - new Date(a.updatedAt);
-
       })
       for (var i = 0; i < todos.length; i++) {
         console.log(`${todos[i].id} [ ${todos[i].status == true ? 'X' : ' '} ] ${todos[i].title} `);
