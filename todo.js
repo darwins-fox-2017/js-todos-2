@@ -44,12 +44,12 @@ class listToDo {
 
       case "list:completed":
 
-        this.completed(this.comment.slice(1).join(''));
+        this.completedSort(this.comment.slice(1).join(''));
         break;
 
       case "list:outstanding":
 
-        this.outstanding(this.comment.slice(1).join(''));
+        this.outstandingSort(this.comment.slice(1).join(''));
         break;
 
       case "tag":
@@ -201,15 +201,15 @@ class listToDo {
     this.list()
   }
 
-  completed(sort){// Asc or Desc, default: asc
+  completedSort(sort){// Asc or Desc, default: asc
     let dataSortByDate = this.data.sort(function(a,b){
       return new Date(a.updatedAt) - new Date(b.updatedAt)
     })
-    let lengthSort = dataSortByDate.length
-    for (let i=0; i < lengthSort; i++) {
+    let i = dataSortByDate.length
+
+    while(i--){
       if(!dataSortByDate[i].status){
         dataSortByDate.splice(i,1)
-        i--
       }
     }
 
@@ -222,12 +222,13 @@ class listToDo {
     }
   }
 
-  outstanding(sort){// Asc or Desc, default: asc
+  outstandingSort(sort){// Asc or Desc, default: asc
     let dataSortByDate = this.data.sort(function(a,b){
       return new Date(a.updatedAt) - new Date(b.updatedAt)
     })
+    let i = dataSortByDate.length
 
-    for (let i=0; i < dataSortByDate.length; i++) {
+    while(i--){
       if(dataSortByDate[i].status){
         dataSortByDate.splice(i,1)
       }
@@ -295,4 +296,3 @@ let argv = process.argv
 let list = new listToDo(argv.slice(2))
 
 list.execute()
-// list.sort([1,4,3,2,6,9,0,1,4,8,9])
