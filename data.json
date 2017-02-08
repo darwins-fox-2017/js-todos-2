@@ -3,17 +3,34 @@
     "title": "Coding",
     "description": "Lalalak akfjsfjkasd ksaf kdsjf fjsl",
     "status": true,
-    "createdAt": "2014-09-08T08:02:17-05:00"
+    "createdAt": "2014-09-08T08:02:17-05:00",
+    "tags": []
 }, {
     "id": 2,
     "title": "Gowes",
     "description": "KJAdjsa djdksa daksda djashdaj dajd",
-    "status": true,
-    "createdAt": "2016-09-08T08:02:17-05:00"
+    "status": false,
+    "createdAt": "2017-09-08T08:02:17-05:00",
+    "tags": []
 }, {
-    "id": 3,
-    "title": "gowes sambil coding",
+    "id": 4,
+    "title": "mandi dan gosok gigi",
+    "description": "Satu dua tiga",
+    "status": true,
+    "createdAt": "2016-02-08T07:10:52.542Z",
+    "tags": []
+}, {
+    "id": 5,
+    "title": "Sleep",
     "description": "Satu dua tiga",
     "status": false,
-    "createdAt": "2017-02-08T06:25:17.701Z"
+    "createdAt": "2017-01-08T07:27:15.135Z",
+    "tags": ["hobby", "santai", "lala"]
+}, {
+    "id": 6,
+    "title": "Antar ke bandara",
+    "description": "Satu dua tiga",
+    "status": false,
+    "createdAt": "2017-02-08T07:27:55.014Z",
+    "tags": ["hobby", "santai"]
 }]
