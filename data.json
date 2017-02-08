@@ -1,1 +1,40 @@
-[{"id":1,"task":"makan siang","status":false},{"id":3,"task":"makan male","status":false},{"id":4,"task":"makan sore","status":false},{"id":5,"task":"makan siang","status":false}]
+[
+	{
+		"id": 1,
+		"task": "makan siang",
+		"status": false,
+		"date": "2017-02-08T09:06:04.359Z",
+		"dateCompleted": "2015-02-08T09:50:17.100Z",
+		"tag": [
+			"eat"
+		]
+	},
+	{
+		"id": 2,
+		"task": "makan malam",
+		"status": true,
+		"date": "2017-02-08T09:06:17.180Z",
+		"dateCompleted": "2018-02-08T09:50:17.100Z",
+		"tag": [
+			"eat"
+		]
+	},
+	{
+		"id": 3,
+		"task": "learning argv",
+		"status": true,
+		"date": "2015-02-08T09:50:17.100Z",
+		"dateCompleted": "2017-02-08T09:50:17.100Z",
+		"tag": [
+			"learning"
+		]
+	},
+	{
+		"id": 4,
+		"task": "test",
+		"status": true,
+		"date": "2017-02-08T12:40:52.370Z",
+		"dateCompleted": "2015-02-08T09:50:17.100Z",
+		"tag": []
+	}
+]
