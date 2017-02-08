@@ -26,6 +26,7 @@ class Todo {
     todo.description = todoProperties.description,
     todo.status = todoProperties.status,
     todo.createdAt = new Date()
+    todo.updatedAt = new Date()
 
     this.todoList.push(todo)
 
@@ -83,8 +84,7 @@ class Todo {
         todoList.push(this.todoList[i])
       }
     }
-
-    this.showOrderBy(todoList, order)
+    this.sortingByDate(todoList, order)
   }
 
   completed(order){
@@ -94,20 +94,21 @@ class Todo {
         todoList.push(this.todoList[i])
       }
     }
-    this.showOrderBy(todoList, order)
+    this.sortingByDate(todoList, order)
   }
 
   showOrderBy(todoList, order){
-    if (order == 'asc') {
-      for (var i = 0; i < todoList.length; i++) {
-        console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
 
-      }
-    } else {
-      for (var i = todoList.length -1; i >= 0 ; i--) {
-        console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
-      }
-    }
+    // if (order == 'asc') {
+    //   for (var i = 0; i < todoList.length; i++) {
+    //     console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
+    //
+    //   }
+    // } else {
+    //   for (var i = todoList.length -1; i >= 0 ; i--) {
+    //     console.log(`${todoList[i].id} [ ${todoList[i].status == true ? 'X' : ' '} ] ${todoList[i].title} `);
+    //   }
+    // }
   }
 
   sortingByName(todoList){
@@ -130,7 +131,7 @@ class Todo {
     let indexTodo = 0
     for (var i = 0; i < this.todoList.length; i++) {
       if (this.todoList[i].id == id) {
-        this.todoList[i].tag = arrTag
+        this.todoList[i].tags = arrTag
         indexTodo = i
         found = true
       }
@@ -145,19 +146,38 @@ class Todo {
 
   filterByTag(tag){
     // console.log(tag);
+    let found = false
     for (let i = 0; i < this.todoList.length; i++) {
       for (let j = 0; j < this.todoList[i].tags.length; j++) {
         if (this.todoList[i].tags[j].toLowerCase() == tag.toLowerCase()) {
           console.log(`${this.todoList[i].id} [ ${this.todoList[i].status == true ? 'X' : ' '} ] ${this.todoList[i].title} `);
+          found = true
         }
       }
     }
+
+    return found
   }
 
-  sortingByDate(todoList){
-    let todos = todoList.sort(function(a, b){
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    })
+  sortingByDate(todoList, order){
+    let todos
+    if (order == 'asc') {
+      todos = todoList.sort(function(a, b){
+        return new Date(a.updatedAt) - new Date(b.updatedAt);
+      })
+
+      for (var i = 0; i < todos.length; i++) {
+        console.log(`${todos[i].id} [ ${todos[i].status == true ? 'X' : ' '} ] ${todos[i].title} `);
+      }
+    } else {
+      todos = todoList.sort(function(a, b){
+        return new Date(b.updatedAt) - new Date(a.updatedAt);
+
+      })
+      for (var i = 0; i < todos.length; i++) {
+        console.log(`${todos[i].id} [ ${todos[i].status == true ? 'X' : ' '} ] ${todos[i].title} `);
+      }
+    }
     return todos
   }
 
@@ -221,7 +241,7 @@ class Command{
         case 'list:outstanding':
           console.log('-------- Berikut Todo List yang belum kamu kelarin ----------');
           if (this.arguments[1] == undefined) {
-            console.log('Kita urutkan berdasarkan waktu masukin ya!');
+            console.log('Kita urutkan berdasarkan waktu terbaru ya!');
             todo.outstanding('asc')
           } else {
             if (this.arguments[1] == 'asc') {
@@ -243,7 +263,7 @@ class Command{
               console.log('Kita urutkan berdasarkan waktu masukin ya!');
               todo.completed('asc')
             } else {
-              console.log('Urutanya dibalik dari waktu masukin ya!');
+              console.log('Urutanya dibalik dari waktu update ya!');
               todo.completed('desc')
             }
           }
@@ -297,14 +317,15 @@ class Command{
         default:
           let argFilter = this.arguments[0].split(':')
           if (argFilter[0] == 'filter') {
-            todo.filterByTag(argFilter[1])
+            let resutlFilter = todo.filterByTag(argFilter[1])
+            if (resutlFilter.status == false) {
+              console.log('Gak ada task yang di tag dengan ' + argFilter[1]);
+            }
           }
 
       }
     }
   }
-
-
 
   isNumber(parameterID){
     return /[1-9]/g.test(parameterID)
