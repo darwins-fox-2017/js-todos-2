@@ -78,7 +78,7 @@ class jsTODO {
     console.log("node todo.js list:completed asc | desc - sorting completed todo list")
     console.log("node todo.js list:outstanding asc | desc - sorting unfinish todo list by id")
     console.log("node todo.js list:filter <task_id> - uncomplete todo list by id")
-    console.log("node todo.js tag <task_id> <name_tag1> <name_tag2> <name_tag3> - uncomplete todo list by id")
+    console.log("node todo.js tag <task_id> <name_tag1> <name_tag2> <name_tag3> - tag activy todo list by id")
     console.log("============================================================")
   }
 
@@ -90,7 +90,7 @@ class jsTODO {
   }
 
   add(content){
-    this.data.push({ id : this.data.length + 1, task : content, status : false, tags : "", createDate : Date(), completedDate : ""})
+    this.data.push({ id : this.data.length + 1, task : content, status : false, tags : [], createDate : Date(), completedDate : ""})
     this.writeToFile()
     console.log("Added \"" + content + "\" to your todo list")
   }
@@ -167,29 +167,21 @@ class jsTODO {
   }
 
   tag(content) {
-    console.log(content)
-
     let index = Number(content[0])
-    let tagMember = (args.splice(4, args.length)).join(" ")
-    console.log(tagMember);
-    this.data[args[3]-1]["tags"].push(tagMember)
-    // console.log(tagMember);
-    // this.data[args[3]-1]['tags'].push(tagMember)
-    // for (let i = 0; i < this.data.length; i++) {
-    //   if (this.data[i].id === index) {
-    //     this.data[args[3]-1]['tags'].push(tagMember)
-    //     // for (let j = 0; j < tagMember.length; i++) {
-    //     //   console.log(this.data[args[i]]['tags'])
-    //     // }
-    //   }
-    // }
+    let tagMember = content.slice(1)
+    console.log(tagMember)
+    console.log(`ini data ke ${index} ${this.data[index-1].task}`)
+
+    for (let i = 0; i < tagMember.length; i++) {
+      console.log("tagMember ke " + i + ' ' + tagMember[i])
+      this.data[index-1].tags.push(tagMember[i])
+    }
     this.writeToFile()
   }
 
   filter(content){
 
   }
-
 }
 
 // Parsing data from json file
