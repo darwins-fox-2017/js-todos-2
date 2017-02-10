@@ -180,7 +180,11 @@ class jsTODO {
   }
 
   filter(content){
-
+    for ( let i = 0; i < this.data.length; i++) {
+      if (this.data[i].tags[0] === content[0]) {
+        console.log(i + ". " + this.data[i].task)
+      }
+    }
   }
 }
 
