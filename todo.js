@@ -13,13 +13,6 @@ class Data {
     tobecompleted.time_completed = Date();
     newData[id-1] = tobecompleted;
 
-    // static outstanding(id) {
-    //   let newData = this.getAllData();
-    //   let tobeoutstanding = newData[id-1];
-    //   tobeoutstanding.outstanding = " ";
-    //   tobeoutstanding.time_outstanding = Date();
-    //   newData[id-1] = tobeoutstanding;
-
     fs.writeFile("data.json", JSON.stringify(newData), "utf8", (err) => {
       if (err) {
         console.log("Error, failed to update data!");
