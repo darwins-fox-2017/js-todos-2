@@ -13,6 +13,13 @@ class Data {
     tobecompleted.time_completed = Date();
     newData[id-1] = tobecompleted;
 
+    // static outstanding(id) {
+    //   let newData = this.getAllData();
+    //   let tobeoutstanding = newData[id-1];
+    //   tobeoutstanding.outstanding = " ";
+    //   tobeoutstanding.time_outstanding = Date();
+    //   newData[id-1] = tobeoutstanding;
+
     fs.writeFile("data.json", JSON.stringify(newData), "utf8", (err) => {
       if (err) {
         console.log("Error, failed to update data!");
@@ -105,11 +112,12 @@ class ToDo {
     console.log("'node todo.js add <task_content>' - to add new task content");
     console.log("'node todo.js delete <task_id>' - to delete a task");
     console.log("'node todo.js complete <task_id>' - to mark a task as a completed task");
-    console.log("'node todo.js uncomplete <task_id>' - to mark a task as a uncompleted task\n");
+    console.log("'node todo.js uncomplete <task_id>' - to mark a task as a uncompleted task");
+    console.log("'node todo.js list' - to show default all of to-do list\n");
     console.log(" -------------------------------  new features ----------------------------------------------");
-    console.log("'node todo.js list:outstanding' - to show default all of to-do list");
-    console.log("'node todo.js list:outstanding:asc' - to show all of to-do list asc according to date added");
-    console.log("'node todo.js list:outstanding:desc' - to show all of to-do list desc according to date added");
+    console.log("'node todo.js list:outstanding' - to show outstanding all of to-do list");
+    console.log("'node todo.js list:outstanding:asc' - to show outstanding of to-do list asc according to date added");
+    console.log("'node todo.js list:outstanding:desc' - to show outstanding of to-do list desc according to date added");
     console.log("'node todo.js list:completed' - to show default all task that have been completed");
     console.log("'node todo.js list:completed:asc' - to show all task that have been completed with asc order");
     console.log("'node todo.js list:completed:desc' - to show all task that have been completed with desc order");
@@ -145,6 +153,53 @@ class ToDo {
       console.log(`| ${i+1}. | [${listToDo[i].completed}]  | ${listToDo[i].task} | ${listToDo[i].tags} | ${listToDo[i].date} | ${listToDo[i].time_completed}`);
     }
   }
+
+  // added outstanding bro
+
+  outstanding() {
+    let listToDo = Data.getAllData();
+    listToDo = listToDo.sort((a,b)=>{
+      if(a.time_completed < b.time_completed) {
+        return -1;
+      }
+      else if(a.time_completed > b.time_completed) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+    let j = 1;
+    for (var i = 0; i < listToDo.length; i++) {
+      if (listToDo[i].completed == " ") {
+        console.log(`| ${i+1}. | [${listToDo[i].completed}]  | ${listToDo[i].task} | ${listToDo[i].tags} | ${listToDo[i].date} | ${listToDo[i].time_completed}`);
+      }
+    }
+  }
+
+  descOutstanding() {
+    let listToDo = Data.getAllData();
+    listToDo = listToDo.sort((a,b)=>{
+      if(a.time_completed > b.time_completed) {
+        return -1;
+      }
+      else if(a.time_completed < b.time_completed) {
+        return 1;
+      }
+      else {
+        return 0;
+      }
+    });
+    let j = 1;
+    for (var i = 0; i < listToDo.length; i++) {
+      if (listToDo[i].completed == " ") {
+        console.log(`| ${i+1}. | [${listToDo[i].completed}]  | ${listToDo[i].task} | ${listToDo[i].tags} | ${listToDo[i].date} | ${listToDo[i].time_completed}`);
+      }
+    }
+  }
+
+
+  // end of outstanding
 
   ascCompleted() {
     let listToDo = Data.getAllData();
@@ -211,11 +266,17 @@ process.argv.splice(0,2);
 let cmd = process.argv.splice(0,1).join("");
 let arg = process.argv.join(" ");
 
-if (cmd == "list:outstanding" || cmd == "list:outstanding:asc") {
+if (cmd == "list" || cmd == "list:asc") {
     todo.list();
 }
-else if(cmd == "list:outstanding:desc") {
+else if(cmd == "list:desc") {
   todo.desc();
+}
+else if (cmd == "list:outstanding" || cmd == "list:outstanding:asc") {
+  todo.outstanding();
+}
+else if(cmd == "list:outstanding:desc") {
+  todo.descOutstanding();
 }
 else if (cmd == "help" || cmd == "") {
   todo.help();
