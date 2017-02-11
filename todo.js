@@ -50,8 +50,12 @@ class jsTODO {
         this.tag(this.content.slice(1))
         break
 
+      case "list:tag" :
+        this.listTag(this.content.slice(1))
+        break
+
       case "filter" :
-        this.filter(this.content)
+        this.filter(this.content.slice(1))
         break
 
       default:
@@ -78,6 +82,7 @@ class jsTODO {
     console.log("node todo.js list:completed asc | desc - sorting completed todo list")
     console.log("node todo.js list:outstanding asc | desc - sorting unfinish todo list by id")
     console.log("node todo.js list:filter <task_id> - uncomplete todo list by id")
+    console.log("node todo.js list:tag - list tag todo list by id")
     console.log("node todo.js tag <task_id> <name_tag1> <name_tag2> <name_tag3> - tag activy todo list by id")
     console.log("============================================================")
   }
@@ -166,6 +171,13 @@ class jsTODO {
     }
   }
 
+  listTag(content) {
+    for (let i = 0; i < this.data.length; i++) {
+      let status = (this.data[i].status) ? "x" : ' '
+      console.log(this.data[i].id + ". [" + status + "] " + this.data[i].task + " - Tag keyword : " + this.data[i].tags.join(', '))
+    }
+  }
+
   tag(content) {
     let index = Number(content[0])
     let tagMember = content.slice(1)
@@ -179,10 +191,12 @@ class jsTODO {
     this.writeToFile()
   }
 
-  filter(content){
-    for ( let i = 0; i < this.data.length; i++) {
-      if (this.data[i].tags[0] === content[0]) {
-        console.log(i + ". " + this.data[i].task)
+  filter(content) {
+    for (let i = 0; i < this.data.length; i++) {
+      for (let j = 0; j < this.data[i].tags.length; j++) {
+        if (this.data[i].tags[j].toLowerCase() == content[j]) {
+          console.log(`[ ${this.data[i].status == true ? 'X' : ' '} ] ${this.data[i].task} `);
+        }
       }
     }
   }
