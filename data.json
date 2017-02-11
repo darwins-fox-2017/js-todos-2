@@ -1,1 +1,11 @@
-[{"id":1,"task":"makan musang","status":true,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:23 GMT+0700 (WIB)","completedDate":"Fri Feb 10 2017 02:10:29 GMT+0700 (WIB)"},{"id":2,"task":"makan ular","status":false,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:28 GMT+0700 (WIB)","completedDate":""},{"id":3,"task":"makan biawak","status":false,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:33 GMT+0700 (WIB)","completedDate":""},{"id":4,"task":"makan kelelawar","status":false,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:49 GMT+0700 (WIB)","completedDate":""},{"id":5,"task":"minum tuak","status":true,"tags":[],"createDate":"Fri Feb 10 2017 02:09:59 GMT+0700 (WIB)","completedDate":"Fri Feb 10 2017 02:10:32 GMT+0700 (WIB)"}]
+[
+  {
+    "id":1,
+    "task":"makan musang",
+    "status":true,"tags":["ngemil"],
+    "createDate":"Fri Feb 10 2017 02:09:23 GMT+0700 (WIB)",
+    "completedDate":"Fri Feb 10 2017 02:10:29 GMT+0700 (WIB)"
+  },
+
+    {
+      "id":2,"task":"makan ular","status":false,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:28 GMT+0700 (WIB)","completedDate":""},{"id":3,"task":"makan biawak","status":true,"tags":["ngemil"],"createDate":"Fri Feb 10 2017 02:09:33 GMT+0700 (WIB)","completedDate":"Sun Feb 12 2017 00:10:35 GMT+0700 (WIB)"},{"id":4,"task":"makan kelelawar","status":false,"tags":["makan"],"createDate":"Fri Feb 10 2017 02:09:49 GMT+0700 (WIB)","completedDate":""},{"id":5,"task":"minum tuak","status":true,"tags":["makan","minum"],"createDate":"Fri Feb 10 2017 02:09:59 GMT+0700 (WIB)","completedDate":"Fri Feb 10 2017 02:10:32 GMT+0700 (WIB)"}]
