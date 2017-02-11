@@ -1,0 +1,72 @@
+[
+   {
+      "id": 1,
+      "task": "Bikin Aplikasi 2",
+      "completed": true,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "",
+      "completedDate": "Sat Feb 11 2017 20:49:08 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 2,
+      "task": "makan",
+      "completed": true,
+      "tags": [
+         "makan"
+      ],
+      "createDate": "",
+      "completedDate": "Sat Feb 11 2017 20:59:52 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 3,
+      "task": "Tidur",
+      "completed": false,
+      "tags": [
+         "tidur"
+      ],
+      "createDate": "",
+      "completedDate": ""
+   },
+   {
+      "id": 4,
+      "task": "Mandi",
+      "completed": true,
+      "tags": [
+         "bersih"
+      ],
+      "createDate": "",
+      "completedDate": "Sat Feb 11 2017 20:48:13 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 5,
+      "task": "ngoding",
+      "completed": true,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "Sat Feb 11 2017 20:32:20 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "Sat Feb 11 2017 20:47:59 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 6,
+      "task": "Nonton",
+      "completed": false,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "Sat Feb 11 2017 20:45:21 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "Sat Feb 11 2017 20:50:52 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 7,
+      "task": "Menulis",
+      "completed": false,
+      "tags": [
+         "baca"
+      ],
+      "createDate": "Sat Feb 11 2017 20:49:57 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "Sat Feb 11 2017 20:50:09 GMT+0700 (SE Asia Standard Time)"
+   }
+]
