@@ -1,8 +1,9 @@
 
 class Todo {
-	constructor(list_data) {
+	constructor(list_data, argv_content) {
 		//this.data = json.readFileSync('data.json')
 		this.list_data = list_data
+		this.argv_content = argv_content
 
 	}
 
@@ -21,6 +22,7 @@ class Todo {
 				console.log("$ node todo.js list:completed asc | desc - sorting completed todo list")
     			console.log("$ node todo.js list:outstanding asc | desc - sorting unfinish todo list by id")
 				console.log("$ node todo.js list:filter <task_id> - uncomplete todo list by id")
+   	 			console.log("$ node todo.js list:tag - list tag todo list by id")
    	 			console.log("$ node todo.js tag <task_id> <name_tag1> <name_tag2> <name_tag3> - tag activy todo list by id")
 				break
 			case "list" :
@@ -47,11 +49,14 @@ class Todo {
 			case "list:completed" :
 				this.listCompleted()
 				break
+			case "list:tag" :
+				this.listTag(argv_content.slice(1))
+				break
 			case "tag" :
 				this.tag(argv_content.slice(1))
 				break
 			case "filter" :
-				this.filter(argv_content)
+				this.filter(argv_content.slice(1))
 				break
 		}	
 		// console.log(convert(arr))
@@ -174,16 +179,23 @@ class Todo {
 		} 
 	}
 
+	listTag(argv_content) {
+		for(let i = 0; i < readDataFile.length; i++) {
+			let print = (readDataFile[i].completed) ? "X" : " "
+			console.log(readDataFile[i].id + ". [" + print + "] " + readDataFile[i].task + " - Tag Keyword : " + readDataFile[i].tags.join(','))
+		}
+	}
+
 	tag(argv_content) {
 		
-		let index = Number(argv_content[0])
-		let tagMember = this.list_data.slice(1)
+		let index = Number(this.argv_content[0])
+		let tagMember = this.argv_content.slice(1)
 		console.log(tagMember)
 		console.log(`Ini data ke ${index} ${readDataFile[index-1].task}`)
 
 		for(let i = 0; i < tagMember.length; i++) {
 			console.log("Tag member ke " + i + " " + tagMember[i])
-			readDataFile[index].tags.push(tagMember[i])
+			readDataFile[index-1].tags.push(tagMember[i])
 		}
 		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
 
@@ -191,9 +203,12 @@ class Todo {
 
 	filter(argv_content) {
 		for(let i = 0; i < readDataFile.length; i++) {
-			if(readDataFile[i].tags[0] === argv_content[0]) {
-				console.log(i + ". " + readDataFile[i].task)
+			for(let j = 0; j < readDataFile[i].tags.length; j++) {
+				if(readDataFile[i].tags[j].toLowerCase() == argv_content[j]) {
+					console.log(`[ ${readDataFile[i].completed == true ? "X" : " "}] ${readDataFile[i].task}`)
+				}	
 			}
+			
 		}
 	}
 
@@ -203,9 +218,9 @@ const fs = require('fs')
 
 let readDataFile = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
 let argv = process.argv
-
-let todo_test = new Todo(argv)
 let argv_content = argv.slice(2)
+let todo_test = new Todo(argv, argv_content)
+
 todo_test.Help(argv_content)
 
 
