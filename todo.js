@@ -12,20 +12,20 @@ class Todo {
   }
 
   help() {
-    let help = `$ node todo.js`
+    let command = `$ node todo.js`
     if (argv == 'help' || argv == '') {
       console.log(`TODO LIST COMMAND:`);
-      console.log(`${help} help`);
-      console.log(`${help} list`);
-      console.log(`${help} add <task_content>`);
-      console.log(`${help} task <task_id>`);
-      console.log(`${help} delete <task_id>`);
-      console.log(`${help} completed <task_id>`);
-      console.log(`${help} uncompleted <task_id>`);
-      console.log(`${help} list:outstanding asc | desc`);
-      console.log(`${help} list:completed asc | desc`);
-      console.log(`${help} tag <task_id> <name_1> <name_2>`);
-      console.log(`${help} filter <tag_name>`);
+      console.log(`${command} help`);
+      console.log(`${command} list`);
+      console.log(`${command} add <task_content>`);
+      console.log(`${command} task <task_id>`);
+      console.log(`${command} delete <task_id>`);
+      console.log(`${command} completed <task_id>`);
+      console.log(`${command} uncompleted <task_id>`);
+      console.log(`${command} list:outstanding asc | desc`);
+      console.log(`${command} list:completed asc | desc`);
+      console.log(`${command} tag <task_id> <name_1> <name_2>`);
+      console.log(`${command} filter: <tag_name>`);
     }
   }
   list() {
@@ -164,11 +164,28 @@ class Todo {
   }
 
   tag() {
-
+    data[argv[1]-1].tag = argv.slice(2).join(' ')
+    data[argv[1]-1].updatedAt = new Date().toLocaleString()
+    fs.writeFileSync('data.json', JSON.stringify (data, null , 3), 'utf-8')
   }
 
   filter() {
-
+    let tmp = []
+    let cond = argv[1]
+    // console.log(cond);
+    for(var i = 0; i < data.length; i++) {
+      if(data[i].tag.indexOf(cond) != -1) {
+        tmp.push(data[i])
+      }
+    }
+    for (var i = 0; i < tmp.length; i++) {
+      if(tmp[i].completed == true) {
+        console.log(`[X] ${tmp[i].id}. ${tmp[i].task} ${tmp[i].createdAt} ${tmp[i].createdAt} ${tmp[i].tag}`)
+      } else {
+        console.log(`[ ] ${tmp[i].id}. ${tmp[i].task} ${tmp[i].createdAt} ${tmp[i].createdAt} ${tmp[i].tag}`)
+      }
+    }
+    // console.log(tmp);
   }
 }
 
@@ -180,21 +197,27 @@ if (argv[0] == 'help' || argv == '') {
   todo.list()
 } else if (argv[0] == 'add') {
   todo.add()
+  todo.list()
 } else if (argv[0] == 'task') {
   todo.task()
+  todo.list()
 } else if (argv[0] == 'delete') {
   todo.delete()
+  todo.list()
 } else if (argv[0] == 'completed') {
   todo.completed()
+  todo.list()
 } else if (argv[0] == 'uncompleted') {
   todo.uncompleted()
+  todo.list()
 } else if (argv[0] == 'list:outstanding') {
   todo.listUncompleted()
 } else if (argv[0] == 'list:completed') {
   todo.listCompleted()
 } else if (argv[0] == 'tag') {
   todo.tag()
-} else if (argv[0] == 'filter') {
+  todo.list()
+} else if(argv[0] == 'filter:'){
   todo.filter()
 }
 
