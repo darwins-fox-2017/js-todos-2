@@ -1,0 +1,50 @@
+[
+   {
+      "id": 1,
+      "task": "coding",
+      "completed": false,
+      "tag": "belajar",
+      "createdAt": "2/8/2017, 7:02:16 PM",
+      "updatedAt": "2/13/2017, 3:29:37 PM"
+   },
+   {
+      "id": 2,
+      "task": "sarapan",
+      "completed": true,
+      "tag": "makan",
+      "createdAt": "2/8/2017, 7:02:19 PM",
+      "updatedAt": "2/13/2017, 3:35:36 PM"
+   },
+   {
+      "id": 3,
+      "task": "tidur siang",
+      "completed": false,
+      "tag": "tidur",
+      "createdAt": "2/8/2017, 7:03:31 PM",
+      "updatedAt": "2/13/2017, 3:29:51 PM"
+   },
+   {
+      "id": 4,
+      "task": "makan",
+      "completed": false,
+      "tag": "makan",
+      "createdAt": "2/8/2017, 7:12:34 PM",
+      "updatedAt": "2/12/2017, 12:14:40 AM"
+   },
+   {
+      "id": 5,
+      "task": "live coding",
+      "completed": true,
+      "tag": "belajar",
+      "createdAt": "2/9/2017, 10:29:59 AM",
+      "updatedAt": "2/13/2017, 3:30:00 PM"
+   },
+   {
+      "id": 6,
+      "task": "service",
+      "completed": false,
+      "tag": "kerja",
+      "createdAt": "2/9/2017, 10:30:20 AM",
+      "updatedAt": "2/12/2017, 12:13:47 AM"
+   }
+]
