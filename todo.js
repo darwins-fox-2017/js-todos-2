@@ -1,3 +1,4 @@
+
 "use strict"
 
 class jsTODO {
@@ -90,6 +91,7 @@ class jsTODO {
   list() {
     for (let i = 0; i < this.data.length; i++) {
       let status = (this.data[i].status) ? "x" : ' '
+      this.data[i].id = i+1
       console.log(this.data[i].id + ". [" + status + "] " + this.data[i].task)
     }
   }
@@ -174,7 +176,7 @@ class jsTODO {
   listTag(content) {
     for (let i = 0; i < this.data.length; i++) {
       let status = (this.data[i].status) ? "x" : ' '
-      console.log(this.data[i].id + ". [" + status + "] " + this.data[i].task + " - Tag keyword : " + this.data[i].tags.join(', '))
+      console.log(i+1 + ". [" + status + "] " + this.data[i].task + " - Tag keyword : " + this.data[i].tags.join(', '))
     }
   }
 
