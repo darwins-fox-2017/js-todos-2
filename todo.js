@@ -66,7 +66,7 @@ class jsTODO {
   }
 
   writeToFile() {
-    fs.writeFileSync('data.json', JSON.stringify(this.data))
+    fs.writeFileSync('data.json', JSON.stringify(this.data,null,3))
   }
 
   help() {
@@ -120,7 +120,7 @@ class jsTODO {
     for (let i = 0; i < this.data.length; i++) {
       if ( this.data[i].id === index ) {
         this.data[i].status = true
-        this.data[i].completedDate = Date()
+        this.data[i].completedDate = new Date()
       }
     }
     this.writeToFile()
@@ -194,14 +194,22 @@ class jsTODO {
   }
 
   filter(content) {
+    let result = []
     for (let i = 0; i < this.data.length; i++) {
       for (let j = 0; j < this.data[i].tags.length; j++) {
-        if (this.data[i].tags[j].toLowerCase() == content[j]) {
-          console.log(`[ ${this.data[i].status == true ? 'X' : ' '} ] ${this.data[i].task} `);
+        // if (this.data[i].tags[j].toLowerCase() == content[j]) {
+        if (content.includes(this.data[i].tags[j].toLowerCase())) {
+          if (!result.includes(this.data[i].task)) {
+            // console.log(`[ ${this.data[i].status == true ? 'X' : ' '} ] ${this.data[i].task} `);
+            result.push(this.data[i].task)
+          }
+          // console.log(`[ ${this.data[i].status == true ? 'X' : ' '} ] ${this.data[i].task} `);
         }
       }
     }
+    console.log(result);
   }
+
 }
 
 // Parsing data from json file
