@@ -7,7 +7,7 @@ class Todo {
 
 	}
 
-	Help(argv_content) {
+	Help(argv2) {
 		switch(this.list_data[2]) {
 			case "help" : 
 				console.log("$===================================$")
@@ -21,8 +21,8 @@ class Todo {
 				console.log("$ node todo.js uncomplete <task_id>")
 				console.log("$ node todo.js list:completed asc | desc - sorting completed todo list")
     			console.log("$ node todo.js list:outstanding asc | desc - sorting unfinish todo list by id")
-				console.log("$ node todo.js list:filter <task_id> - uncomplete todo list by id")
-   	 			console.log("$ node todo.js list:tag - list tag todo list by id")
+    			console.log("$ node todo.js list:tags")
+				console.log("$ node todo.js filter <task_id> - uncomplete todo list by id")
    	 			console.log("$ node todo.js tag <task_id> <name_tag1> <name_tag2> <name_tag3> - tag activy todo list by id")
 				break
 			case "list" :
@@ -49,14 +49,14 @@ class Todo {
 			case "list:completed" :
 				this.listCompleted()
 				break
-			case "list:tag" :
-				this.listTag(argv_content.slice(1))
-				break
 			case "tag" :
-				this.tag(argv_content.slice(1))
+				this.tag()
+				break
+			case "list:tags" : 
+				this.tagList()
 				break
 			case "filter" :
-				this.filter(argv_content.slice(1))
+				this.filter()
 				break
 		}	
 		// console.log(convert(arr))
@@ -82,11 +82,11 @@ class Todo {
 			'id' : readDataFile.length+1,
 			'task' : addthis,
 			'completed' : false,
-			'createDate' : Date(),
-			'completedDate' : ""
+			'createDate' : new Date().toLocaleString(),
+			'completedDate' : new Date().toLocaleString()
 			
 		})
-		console.log(`${addthis} ditambah`)
+		console.log(`${addthis} ditambahkan`)
 
 
 		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
@@ -94,39 +94,29 @@ class Todo {
 	}
 
 	task() {
-		for(let i = 0; i < readDataFile.length; i++) {
-			if(readDataFile[i].id === readDataFile[3].id) {
-				console.log(`readDataFile[i].id`)
-			}
+		if(readDataFile[argv2[1] - 1].completed == true) {
+			console.log(`[X] ${readDataFile[argv2[1]-1].id}. ${readDataFile[argv2[1]-1].task} - Completed`)
+		} else {
+			console.log(`[ ] ${readDataFile[argv2[1] - 1].id}. ${readDataFile[argv2[1]-1].task}`)
 		}
-		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
-
+		
 	}
 
 	delete() {
 
 		delete readDataFile[argv[3] -1]
 		readDataFile.splice(argv[3]-1, 1)
-		console.log("Data di hapus")
+		console.log(`Data telah di hapus`)
 		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
 	}
 
 	complete() {
-		console.log("Task yang ke - " + this.list_data[3])
-		let inputan = argv[3]-1 
-		let id_complete = Number(argv[3])
-		for(let i = 0; i < readDataFile.length; i++) {
-			if(readDataFile[i].id === id_complete) {
-				readDataFile[i].completed = true
-				readDataFile[i].completedDate = Date()
-			}
-		}
-
-		// readDataFile[argv[3] - 1].completed = true
-		// readDataFile[argv[3] - 1].completedDate = Date()
-		console.log(`${readDataFile[argv[3]].task} Completed!`)	
+		//console.log("Task yang ke - " + this.list_data[3])
+		let completed = argv2.slice(1).join(' ')			
+		readDataFile[argv2[1] - 1].completed = true
+		readDataFile[argv2[1] - 1].completedDate = new Date().toLocaleString()
+		console.log(`Task ${completed} Completed!`)	
 		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
-
 	}
 
 	uncompleted() {
@@ -140,7 +130,6 @@ class Todo {
 	}
 
 	// ============
-
 	outstanding() {
 		let datasorting = ""
 		if(argv[3] == "desc") {
@@ -154,8 +143,13 @@ class Todo {
 		}
 
 		for(let i = 0; i < datasorting.length; i++) {
-			let status = (datasorting[i].completed) ? "X" : " "
-			console.log(i+1 + ". [" + status + "] " + datasorting[i].task + " is completed at " + datasorting[i].completedDate)
+			let status = (datasorting[i].completed)
+			if(status == true) {
+				console.log(i+1 + ". [X] " + datasorting[i].task + " is completed at " + datasorting[i].completedDate)
+			} else {
+				console.log(i+1 + ". [ ] " + datasorting[i].task + " is Create at " + datasorting[i].createDate)
+			}
+			
 		}
 	}	
 
@@ -179,48 +173,50 @@ class Todo {
 		} 
 	}
 
-	listTag(argv_content) {
-		for(let i = 0; i < readDataFile.length; i++) {
-			let print = (readDataFile[i].completed) ? "X" : " "
-			console.log(readDataFile[i].id + ". [" + print + "] " + readDataFile[i].task + " - Tag Keyword : " + readDataFile[i].tags.join(','))
-		}
+	tag() {
+		readDataFile[argv2[1]-1].tags = argv2.slice(2).join(' ')
+	    readDataFile[argv2[1]-1].completedDate = new Date().toLocaleString()
+	    fs.writeFileSync('data.json', JSON.stringify (readDataFile, null , 3), 'utf-8')
+
 	}
 
-	tag(argv_content) {
+	tagList() {
+		for(let i = 0; i < readDataFile.length; i++) {
 		
-		let index = Number(this.argv_content[0])
-		let tagMember = this.argv_content.slice(1)
-		console.log(tagMember)
-		console.log(`Ini data ke ${index} ${readDataFile[index-1].task}`)
-
-		for(let i = 0; i < tagMember.length; i++) {
-			console.log("Tag member ke " + i + " " + tagMember[i])
-			readDataFile[index-1].tags.push(tagMember[i])
+			console.log(`${i + 1}. ${readDataFile[i].task} -> ${readDataFile[i].tags}`)
+		
 		}
-		fs.writeFileSync('data.json', JSON.stringify(readDataFile, false, 3), 'utf-8')
-
 	}
 
-	filter(argv_content) {
+	filter() {
+		let tmp = []
+		let cond = argv2[1]
+
 		for(let i = 0; i < readDataFile.length; i++) {
-			for(let j = 0; j < readDataFile[i].tags.length; j++) {
-				if(readDataFile[i].tags[j].toLowerCase() == argv_content[j]) {
-					console.log(`[ ${readDataFile[i].completed == true ? "X" : " "}] ${readDataFile[i].task}`)
-				}	
+			if(readDataFile[i].tags.indexOf(cond) != -1) {
+				tmp.push(readDataFile[i])
 			}
-			
 		}
-	}
 
+		// console.log('========', tmp)
+		for(let i = 0; i < tmp.length; i++) {
+			if(tmp[i].completed == true) {
+				console.log(`[X] ${tmp[i].id}. ${tmp[i].task} ${tmp[i].tags}`)
+			} else {
+				console.log(`[ ] ${tmp[i].id}. ${tmp[i].task} ${tmp[i].task}`)
+			}
+		}
+
+ 	}
 
 }
 const fs = require('fs')
-
-let readDataFile = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
 let argv = process.argv
-let argv_content = argv.slice(2)
-let todo_test = new Todo(argv, argv_content)
+let argv2 = process.argv.slice(2)
+let readDataFile = JSON.parse(fs.readFileSync('data.json', 'utf-8'))
 
-todo_test.Help(argv_content)
+let todo_test = new Todo(argv, argv2)
+
+todo_test.Help(argv2)
 
 
