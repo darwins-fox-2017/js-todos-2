@@ -1,0 +1,74 @@
+[
+   {
+      "id": 1,
+      "task": "Bikin Aplikasi 2",
+      "completed": true,
+      "tags": "coding",
+      "createDate": "",
+      "completedDate": "2/15/2017, 11:56:40 AM"
+   },
+   {
+      "id": 2,
+      "task": "makan",
+      "completed": true,
+      "tags": "sarapan",
+      "createDate": "",
+      "completedDate": "2/15/2017, 11:56:05 AM"
+   },
+   {
+      "id": 3,
+      "task": "Tidur",
+      "completed": true,
+      "tags": "Bobo",
+      "createDate": "",
+      "completedDate": "2/15/2017, 11:57:04 AM"
+   },
+   {
+      "id": 4,
+      "task": "Mandi",
+      "completed": true,
+      "tags": [
+         "bersih"
+      ],
+      "createDate": "",
+      "completedDate": "Sat Feb 11 2017 20:48:13 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 5,
+      "task": "ngoding",
+      "completed": false,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "Sat Feb 11 2017 20:32:20 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "Sat Feb 11 2017 20:47:59 GMT+0700 (SE Asia Standard Time)"
+   },
+   {
+      "id": 6,
+      "task": "Menulis",
+      "completed": false,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "Wed Feb 15 2017 10:53:29 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "2/15/2017, 10:58:52 AM"
+   },
+   {
+      "id": 7,
+      "task": "Masak",
+      "completed": true,
+      "tags": "sarapan",
+      "createDate": "Wed Feb 15 2017 10:53:46 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": "2/15/2017, 12:14:27 PM"
+   },
+   {
+      "id": 8,
+      "task": "Minum Kopi",
+      "completed": false,
+      "tags": [
+         "coding"
+      ],
+      "createDate": "Wed Feb 15 2017 11:00:28 GMT+0700 (SE Asia Standard Time)",
+      "completedDate": ""
+   }
+]
